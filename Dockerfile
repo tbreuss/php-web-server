@@ -8,7 +8,7 @@ FROM base AS composer
 COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
 
 
-FROM base AS builder
+FROM base AS server
 
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -23,29 +23,16 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-install -j$(nproc) \
       gd \
       intl \
+      mysqli \
+      pdo \
+      pdo_mysql \
     ;
 
 RUN pecl channel-update pecl.php.net; \
     pecl install xdebug; \
     docker-php-ext-enable xdebug;
 
-
-FROM base AS server
-
-RUN apt-get update; \
-    apt-get install -y --no-install-recommends \
-        git \
-        libicu76 \
-        libfreetype6 \
-        libjpeg62-turbo \
-        libpng16-16 \
-        unzip \
-    ; \
-    rm -rf /var/lib/apt/lists/*;
-
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
-COPY --from=builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
 RUN groupadd -g 1000 php && useradd -m -u 1000 -g php php
