@@ -39,6 +39,8 @@ And if you want to use Xdebug, here's how to do it:
 
     docker run --rm -e XDEBUG_CONFIG="client_host=172.17.0.1" -e XDEBUG_MODE=debug -e XDEBUG_SESSION_START=true -v .:/app -p 8888:8888 php:8.4 php -S 0.0.0.0:8888 -t /app/web
 
+Note: On macOS, the Xdebug configuration should be as follows: `XDEBUG_CONFIG="client_host=host.docker.internal`.
+
 To start the container with an interactive terminal session, run the following command:
 
     docker run --rm -it -v .:/app php:8.4 bash
