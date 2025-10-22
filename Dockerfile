@@ -35,6 +35,7 @@ FROM base AS server
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
         git \
+        libicu76 \
         libfreetype6 \
         libjpeg62-turbo \
         libpng16-16 \
