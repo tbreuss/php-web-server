@@ -10,27 +10,32 @@ COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
 
 FROM base AS server
 
-RUN apt-get update; \
-    apt-get install -y --no-install-recommends \
-        libicu-dev \
-        libfreetype-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-    ; \
-    rm -rf /var/lib/apt/lists/*;
+RUN <<EOF
+apt-get update
+apt-get install -y --no-install-recommends \
+  libicu-dev \
+  libfreetype-dev \
+  libjpeg62-turbo-dev \
+  libpng-dev
+rm -rf /var/lib/apt/lists/*
+EOF
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg; \
-    docker-php-ext-install -j$(nproc) \
-      gd \
-      intl \
-      mysqli \
-      pdo \
-      pdo_mysql \
-    ;
+RUN <<EOF
+docker-php-ext-configure \
+  gd --with-freetype --with-jpeg
+docker-php-ext-install \
+  gd \
+  intl \
+  mysqli \
+  pdo \
+  pdo_mysql
+EOF
 
-RUN pecl channel-update pecl.php.net; \
-    pecl install xdebug; \
-    docker-php-ext-enable xdebug;
+RUN <<EOF
+pecl channel-update pecl.php.net
+pecl install xdebug
+docker-php-ext-enable xdebug
+EOF
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
