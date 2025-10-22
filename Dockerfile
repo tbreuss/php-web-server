@@ -47,9 +47,9 @@ COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --from=builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
-RUN groupadd -g 1000 zack && useradd -m -u 1000 -g zack zack
-RUN mkdir /app  && chown -R zack:zack /app
-USER zack
+RUN groupadd -g 1000 php && useradd -m -u 1000 -g php php
+RUN mkdir /app  && chown -R php:php /app
+USER php
 
 WORKDIR /app
 VOLUME /app
