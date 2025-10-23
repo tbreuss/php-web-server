@@ -16,7 +16,8 @@ apt-get install -y --no-install-recommends \
   libicu-dev \
   libfreetype-dev \
   libjpeg62-turbo-dev \
-  libpng-dev
+  libpng-dev \
+  libzip-dev
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -28,7 +29,8 @@ docker-php-ext-install \
   intl \
   mysqli \
   pdo \
-  pdo_mysql
+  pdo_mysql \
+  zip
 EOF
 
 RUN <<EOF
