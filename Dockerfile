@@ -9,8 +9,6 @@ RUN <<EOF
     @composer \
     gd \
     intl \
-    mysqli \
-    pdo \
     pdo_mysql \
     xdebug \
     zip
