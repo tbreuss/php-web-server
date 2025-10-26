@@ -1,7 +1,7 @@
 # Docker Image using PHP's built-in Web Server
 
 This Docker image provides a lightweight PHP development environment using PHP's built-in web server.
-Based on the official PHP image, it's ideal for quickly spinning up ad hoc projects.
+Based on the official Alpine PHP image, it's ideal for quickly spinning up ad hoc projects.
 
 ## Supported PHP Versions
 
@@ -13,7 +13,7 @@ Older versions should also work.
 
 ## Build Image
 
-Create Docker image based on the latest supported PHP version.
+Build Docker image based on the latest supported PHP version.
 
     docker build -t php:8.4 https://github.com/tbreuss/php-built-in-server.git
 
@@ -24,7 +24,11 @@ Optionally, you can also use an older PHP version.
 
 ## Apply Image
 
-Let's say you have the following project structure.
+Start your project as follows:
+
+    docker run --rm -v .:/app -p 8888:8888 php:8.4
+
+If you have a specific document root directory:
 
     project/
     ├─ your-code/
@@ -43,4 +47,4 @@ Note: On macOS, the Xdebug configuration should be as follows: `XDEBUG_CONFIG="c
 
 To start the container with an interactive terminal session, run the following command:
 
-    docker run --rm -it -v .:/app php:8.4 bash
+    docker run --rm -it -v .:/app php:8.4 ash
