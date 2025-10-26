@@ -1,7 +1,7 @@
 # Docker Image using PHP's built-in Web Server
 
 This Docker image provides a lightweight PHP development environment using PHP's built-in web server.
-Based on the official PHP image, it's ideal for quickly spinning up ad hoc projects.
+Based on the [Wolfi Base Docker Image](https://images.chainguard.dev/directory/image/wolfi-base/overview) from [Chainguard](https://www.chainguard.dev/), it's ideal for quickly spinning up ad hoc projects.
 
 ## Supported PHP Versions
 
@@ -9,11 +9,9 @@ Based on the official PHP image, it's ideal for quickly spinning up ad hoc proje
 - 8.3
 - 8.4
 
-Older versions should also work.
-
 ## Build Image
 
-Create Docker image based on the latest supported PHP version.
+Build Docker image based on the latest supported PHP version.
 
     docker build -t php:8.4 https://github.com/tbreuss/php-built-in-server.git
 
@@ -24,7 +22,11 @@ Optionally, you can also use an older PHP version.
 
 ## Apply Image
 
-Let's say you have the following project structure.
+Start your project as follows:
+
+    docker run --rm -v .:/app -p 8888:8888 php:8.4
+
+If you have a specific document root directory:
 
     project/
     ├─ your-code/

@@ -7,11 +7,15 @@ RUN <<EOF
     composer \
     php-${PHP_VERSION} \
     php-${PHP_VERSION}-curl \
+    php-${PHP_VERSION}-ctype \
     php-${PHP_VERSION}-dom \
     php-${PHP_VERSION}-gd \
     php-${PHP_VERSION}-intl \
+    php-${PHP_VERSION}-mbstring \
     php-${PHP_VERSION}-mysqli \
     php-${PHP_VERSION}-mysqlnd \
+    php-${PHP_VERSION}-openssl \
+    php-${PHP_VERSION}-phar \
     php-${PHP_VERSION}-pdo \
     php-${PHP_VERSION}-pdo_mysql \
     php-${PHP_VERSION}-xdebug \
