@@ -15,12 +15,12 @@ Older versions should also work.
 
 Build Docker image based on the latest supported PHP version.
 
-    docker build -t php:8.4 https://github.com/tbreuss/php-built-in-server.git
+    docker build -t php:8.4 https://github.com/tbreuss/php-web-server.git
 
 Optionally, you can also use an older PHP version.
 
-    docker build --build-arg PHP_VERSION=8.2 -t php:8.2 https://github.com/tbreuss/php-built-in-server.git
-    docker build --build-arg PHP_VERSION=8.3 -t php:8.3 https://github.com/tbreuss/php-built-in-server.git
+    docker build --build-arg PHP_VERSION=8.2 -t php:8.2 https://github.com/tbreuss/php-web-server.git
+    docker build --build-arg PHP_VERSION=8.3 -t php:8.3 https://github.com/tbreuss/php-web-server.git
 
 ## Apply Image
 
