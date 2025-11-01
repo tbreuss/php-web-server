@@ -15,18 +15,18 @@ Older versions should also work.
 
 Build Docker image based on the latest supported PHP version.
 
-    docker build -t php:8.4 https://github.com/tbreuss/php-web-server.git
+    docker build -t phpsrv:8.4 https://github.com/tbreuss/phpsrv.git
 
 Optionally, you can also use an older PHP version.
 
-    docker build --build-arg PHP_VERSION=8.2 -t php:8.2 https://github.com/tbreuss/php-web-server.git
-    docker build --build-arg PHP_VERSION=8.3 -t php:8.3 https://github.com/tbreuss/php-web-server.git
+    docker build --build-arg PHP_VERSION=8.2 -t phpsrv:8.2 https://github.com/tbreuss/phpsrv.git
+    docker build --build-arg PHP_VERSION=8.3 -t phpsrv:8.3 https://github.com/tbreuss/phpsrv.git
 
 ## Apply Image
 
 Start your project as follows:
 
-    docker run --rm -v .:/app -p 8888:8888 php:8.4
+    docker run --rm -v .:/app -p 8888:8888 phpsrv:8.4
 
 If you have a specific document root directory:
 
@@ -37,14 +37,14 @@ If you have a specific document root directory:
 
 Then you can start your project as follows:
 
-    docker run --rm -v .:/app -p 8888:8888 php:8.4 php -S 0.0.0.0:8888 -t /app/web
+    docker run --rm -v .:/app -p 8888:8888 phpsrv:8.4 php -S 0.0.0.0:8888 -t /app/web
 
 And if you want to use Xdebug, here's how to do it:
 
-    docker run --rm -e XDEBUG_CONFIG="client_host=172.17.0.1" -e XDEBUG_MODE=debug -e XDEBUG_SESSION_START=true -v .:/app -p 8888:8888 php:8.4 php -S 0.0.0.0:8888 -t /app/web
+    docker run --rm -e XDEBUG_CONFIG="client_host=172.17.0.1" -e XDEBUG_MODE=debug -e XDEBUG_SESSION_START=true -v .:/app -p 8888:8888 phpsrv:8.4 php -S 0.0.0.0:8888 -t /app/web
 
 Note: On macOS, the `client_host` setting should be `host.docker.internal`.
 
 To start the container with an interactive terminal session, run the following command:
 
-    docker run --rm -it -v .:/app php:8.4 ash
+    docker run --rm -it -v .:/app phpsrv:8.4 ash
